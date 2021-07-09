@@ -22,7 +22,6 @@
 //   return result;
 // };
 
-
 const romanNumeralsLookUp = {
   M: 1000,
   CM: 900,
@@ -42,15 +41,12 @@ const romanNumeralsLookUp = {
 const romanNumeralEncoder = (num) => {
   let result = "";
   for (const numeral in romanNumeralsLookUp) {
-    if (num >= romanNumeralsLookUp[numeral]) {
-      const roundedQuotient = Math.floor(num / romanNumeralsLookUp[numeral]);
-      for (let i = 0; i < roundedQuotient; i++) {
-        result += numeral;
-      }
-      num -= roundedQuotient * romanNumeralsLookUp[numeral];
+    while (num >= romanNumeralsLookUp[numeral]) {
+      result += numeral;
+      num -= romanNumeralsLookUp[numeral];
     }
   }
   return result;
 };
 
-module.exports = { romanNumeralEncoder }
+module.exports = { romanNumeralEncoder };
