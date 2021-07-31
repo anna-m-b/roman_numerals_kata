@@ -139,3 +139,6 @@ describe('100 and above', () => {
 })
 
 
+// edge cases
+// reject decimals
+// reject other non-integer types

@@ -63,8 +63,11 @@ const romanNumeralEncoder = (num) => {
 // };
 
 const romanNumeralConverter = (rnstring) => {
+  if (rnstring.match(/[^IVXLCDM]+/gi)) {
+    throw new Error('Please feed me Roman Numerals only')
+  }
   let baseten = 0;
-  const romanNumerals = rnstring.split("");
+  const romanNumerals = rnstring.toUpperCase().split("");
   romanNumerals.forEach((rn, i) => {
     romanNumeralsLookUp[rn + romanNumerals[i + 1]]
       ? (baseten -= romanNumeralsLookUp[rn])
