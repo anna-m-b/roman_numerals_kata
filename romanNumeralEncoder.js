@@ -13,9 +13,9 @@
 //     }
 //   }
 
-//   for (symbol in baseMinusOneLookUp) {
-//     if (result.includes(symbol)) {
-//       result = result.replace(symbol, baseMinusOneLookUp[symbol]);
+//   for (rn in baseMinusOneLookUp) {
+//     if (result.includes(rn)) {
+//       result = result.replace(rn, baseMinusOneLookUp[rn]);
 //     }
 //   }
 
@@ -39,14 +39,38 @@ const romanNumeralsLookUp = {
 };
 
 const romanNumeralEncoder = (num) => {
-  let result = "";
-  for (const numeral in romanNumeralsLookUp) {
-    while (num >= romanNumeralsLookUp[numeral]) {
-      result += numeral;
-      num -= romanNumeralsLookUp[numeral];
+  let rnstring = "";
+  for (const rn in romanNumeralsLookUp) {
+    while (num >= romanNumeralsLookUp[rn]) {
+      rnstring += rn;
+      num -= romanNumeralsLookUp[rn];
     }
   }
-  return result;
+  return rnstring;
 };
 
-module.exports = { romanNumeralEncoder };
+// const romanNumeralConverter = (rnstring) => {
+//   const subtractors = { C: ["M", "D"], X: ["C", "L"], I: ["V", "X"] };
+//   let result = 0;
+//   const romanNumerals = rnstring.split("");
+//   romanNumerals.forEach((rn, index) => {
+//         subtractors[rn] &&
+//         subtractors[rn].find((pair) => pair === romanNumerals[index + 1])
+//           ? (result -= romanNumeralsLookUp[rn])
+//           : (result += romanNumeralsLookUp[rn]);
+//     })
+//   return result;
+// };
+
+const romanNumeralConverter = (rnstring) => {
+  let baseten = 0;
+  const romanNumerals = rnstring.split("");
+  romanNumerals.forEach((rn, i) => {
+    romanNumeralsLookUp[rn + romanNumerals[i + 1]]
+      ? (baseten -= romanNumeralsLookUp[rn])
+      : (baseten += romanNumeralsLookUp[rn]);
+  });
+  return baseten;
+};
+
+module.exports = { romanNumeralEncoder, romanNumeralConverter };

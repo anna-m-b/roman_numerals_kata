@@ -1,6 +1,6 @@
 const { romanNumeralEncoder } = require('./romanNumeralEncoder')
 
-xdescribe('0, 1, 5, 10 additive', () => {
+describe('0, 1, 5, 10 additive', () => {
   it('when passed 0, returns an empty string', () => {
     expect(romanNumeralEncoder(0)).toBe("")
   })
@@ -60,7 +60,7 @@ xdescribe('0, 1, 5, 10 additive', () => {
   })
 })
 
-xdescribe('base-minus-1 numbers up to 34', () => {
+describe('base-minus-1 numbers up to 34', () => {
   it("when passed 4 returns IV", () => {
     expect(romanNumeralEncoder(4)).toBe("IV")
   })
@@ -81,7 +81,7 @@ xdescribe('base-minus-1 numbers up to 34', () => {
   })
 })
 
-xdescribe('40 to 100', () => {
+describe('40 to 100', () => {
   it("when passed 40 it returns XL", () => {
     expect(romanNumeralEncoder(40)).toBe("XL")
   })
